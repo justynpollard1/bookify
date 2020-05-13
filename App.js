@@ -5,6 +5,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import {HomeStackScreen, ProfileStackScreen, MessageStackScreen, PostStackScreen, NotificationStackScreen} from './stack/Stack'
 
+import {decode, encode} from 'base-64'
+
+if (!global.btoa) {  global.btoa = encode }
+
+if (!global.atob) { global.atob = decode }
+
 
 const Tab = createBottomTabNavigator();
 
