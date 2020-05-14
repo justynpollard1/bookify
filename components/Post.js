@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, Alert, TextInput, SafeAreaView, Touchab
 import * as firebase from 'firebase';
 import "firebase/storage";
 import "firebase/database"
-import "@firebase/firestore";
+import "@firebase/firestore"
 
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
@@ -30,6 +30,9 @@ export default class Post extends React.Component {
   constructor(props) {
     super(props);
   }
+
+
+ collectionName = 'post-1234';
 
   storage  = firebase.storage();
   collection = firebase.firestore().collection(this.collectionName);
@@ -75,7 +78,7 @@ post = (money, title, url) => {
 
       const response = await fetch(result.uri);
       const blob  = await response.blob();
-      const upload = this.storage.ref(`images/${result.uri}`).put(blob);
+      const upload = this.storage.ref(`images/posts`).put(blob);
       upload.on('state_changed', 
       (snapshot) => {
 
@@ -84,7 +87,7 @@ post = (money, title, url) => {
 
       }, 
       () => {
-        this.storage.ref('images').child(result.uri).getDownloadURL().then(url => {
+        this.storage.ref('images/posts').child(result.uri).getDownloadURL().then(url => {
           console.log(url);
           console.log("SUCCESSS");
           this.setState({url});

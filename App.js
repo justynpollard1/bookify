@@ -20,7 +20,7 @@ export default function App() {
 <NavigationContainer>
   <Tab.Navigator  
   screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
+          tabBarIcon: ({  color }) => {
             let iconName;
 
             if (route.name === 'Home') {
@@ -36,7 +36,7 @@ export default function App() {
             }
 
             // You can return any component that you like here!
-            return <MaterialIcons name={iconName} size={size} color={color} />;
+            return <MaterialIcons name={iconName} color={color} />;
           },
         })}
         tabBarOptions={{

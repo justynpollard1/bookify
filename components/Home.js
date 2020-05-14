@@ -21,7 +21,7 @@ const Home = () =>  {
         <FlatList
         data={card}
         renderItem={({ item }) => <CustomCard title={item.title} small_text = {item.small_text} money={item.money} />}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id.toString()}
       />
         
     </SafeAreaView>

@@ -20,7 +20,7 @@ const CustomCard = props => {
             </Text>
         </View>
         <View style={styles.icon}>
-        <MaterialIcons name='bookmark-border' size='24'/>
+        <MaterialIcons name='bookmark-border' size={24}/>
         </View>
     </View>
     )
