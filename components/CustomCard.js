@@ -6,17 +6,17 @@ const CustomCard = props => {
     return (
     <View style={styles.container}>
         <Image style={styles.image} 
-        source={require('../assets/buyAndSell.jpg')}
+        source={{uri: props.image}}
         />
         <View style={styles.text}>
             <Text style={styles.title_text}>
                 {props.title}
             </Text>
             <Text style={styles.small_text}>
-               {props.small_text}
+                5mins ago
             </Text>
             <Text style={styles.money_text}>
-                {props.money}
+                ${props.money}
             </Text>
         </View>
         <View style={styles.icon}>

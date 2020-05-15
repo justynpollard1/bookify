@@ -1,47 +1,29 @@
 import React, {useState}  from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput, SafeAreaView, TouchableOpacity, Image } from 'react-native';
+import { v5 as uuidv5 } from 'uuid'; // For version 5
 import * as firebase from 'firebase';
 import "firebase/storage";
 import "firebase/database"
 import "@firebase/firestore"
+import {db, storage} from  "../firebase/Fire"
 
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDUQ_N1jcrrfiRo0R3Tj7pol0N5-D3xoWg",
-  authDomain: "test-app-96cb0.firebaseapp.com",
-  databaseURL: "https://test-app-96cb0.firebaseio.com",
-  projectId: "test-app-96cb0",
-  storageBucket: "test-app-96cb0.appspot.com",
-  messagingSenderId: "205075513499",
-  appId: "1:205075513499:web:40606fe80f18dae4f8863e",
-  measurementId: "G-XBXR3DSBQ0"
-};
-
-
-if(!firebase.apps.length) {
-firebase.initializeApp(firebaseConfig)
-}
-
-
-
 export default class Post extends React.Component {
   constructor(props) {
     super(props);
+    console.log(uuidv5.URL);
   }
-
-
- collectionName = 'post-1234';
-
-  storage  = firebase.storage();
-  collection = firebase.firestore().collection(this.collectionName);
 
 state = {
   money: 0,
   title: '',
   url: ''
 }
+
+
+
 
 handleMoney = (text) => {
   this.setState({ money: text })
@@ -51,7 +33,7 @@ handleTitle = (text) => {
 }
 
 post = (money, title, url) => {
-  firebase.firestore().collection("posts").add({
+  db.collection("posts").add({
     money: money,
     title: title,
     image: url
@@ -65,46 +47,44 @@ post = (money, title, url) => {
       aspect: [4, 3],
       quality: 1
     });
-    console.log(result);
 
     if(!result.cancelled) {
-      // this.uploadImage(result.uri)
-      // .then(() => {
-      //   console.log('Sucess');
-      // })
-      // .catch((error) => {
-      //   console.log(error);
-      // })
-
       const response = await fetch(result.uri);
       const blob  = await response.blob();
-      const upload = this.storage.ref(`images/posts`).put(blob);
-      upload.on('state_changed', 
-      (snapshot) => {
+      const path = `images/testPosts${uuidv5.URL}`
+      const storageRef = storage.ref(path);
+    storageRef.put(blob)
+    .then(() => console.log("Success"))
+    .catch(err => console.log("ERROR"));
 
-      }, 
-      (error) => {
+    storageRef.getDownloadURL().then(url => {
+      this.setState({url});
+    });
 
-      }, 
-      () => {
-        this.storage.ref('images/posts').child(result.uri).getDownloadURL().then(url => {
-          console.log(url);
-          console.log("SUCCESSS");
-          this.setState({url});
-        })
-      }
-      )
+    
+
+
+
+      // upload.on('state_changed', 
+      // (snapshot) => {
+
+      // }, 
+      // (error) => {
+      //   console.log(error);
+
+      // }, 
+      // () => {
+      //   storage.ref('images/posts').child(result.uri).getDownloadURL().then(url => {
+      //     console.log(url);
+      //     console.log("SUCCESSS");
+      //     this.setState({url});
+      //   })
+      // }
+      // )
+
+
     }
   }
-
-  // uploadImage = async (uri) => {
-  //   const response = await fetch(uri);
-  //   const  blob = await response.blob();
-
-  //   const ref = firebase.storage().ref().child("images/")
-  //   return ref.put(blob);
-  // }
-
   render() {
     return (
         <SafeAreaView style={ styles.container }>
