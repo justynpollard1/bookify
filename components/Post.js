@@ -1,19 +1,14 @@
 import React, {useState}  from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput, SafeAreaView, TouchableOpacity, Image } from 'react-native';
 import { v5 as uuidv5 } from 'uuid'; // For version 5
-import * as firebase from 'firebase';
-import "firebase/storage";
-import "firebase/database"
-import "@firebase/firestore"
 import {db, storage} from  "../firebase/Fire"
 
 import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
 
 export default class Post extends React.Component {
   constructor(props) {
     super(props);
-    console.log(uuidv5.URL);
+
   }
 
 state = {
@@ -21,9 +16,6 @@ state = {
   title: '',
   url: ''
 }
-
-
-
 
 handleMoney = (text) => {
   this.setState({ money: text })
@@ -60,28 +52,6 @@ post = (money, title, url) => {
     storageRef.getDownloadURL().then(url => {
       this.setState({url});
     });
-
-    
-
-
-
-      // upload.on('state_changed', 
-      // (snapshot) => {
-
-      // }, 
-      // (error) => {
-      //   console.log(error);
-
-      // }, 
-      // () => {
-      //   storage.ref('images/posts').child(result.uri).getDownloadURL().then(url => {
-      //     console.log(url);
-      //     console.log("SUCCESSS");
-      //     this.setState({url});
-      //   })
-      // }
-      // )
-
 
     }
   }
