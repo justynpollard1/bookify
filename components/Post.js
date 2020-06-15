@@ -1,64 +1,16 @@
-import React, {useState}  from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput, SafeAreaView, TouchableOpacity, Image } from 'react-native';
 import { v5 as uuidv5 } from 'uuid'; // For version 5
 import {db, storage} from  "../firebase/Fire"
-import {LIGHT_GREY} from '../constants/colors'
+import {TEXT_COLOR} from '../constants/colors'
 
 import { MaterialIcons } from '@expo/vector-icons';
 
 import * as ImagePicker from 'expo-image-picker';
 
-export default class Post extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
-
-state = {
-  money: 0,
-  title: '',
-  url: ''
-}
-
-handleMoney = (text) => {
-  this.setState({ money: text })
-}
-handleTitle = (text) => {
-  this.setState({ title: text })
-}
-
-post = (money, title, url) => {
-  db.collection("posts").add({
-    money: money,
-    title: title,
-    image: url
-  }).then(ref => console.log(ref)).catch(error => console.log("an error " +  error));
-}
-
-  onChooseImagePress = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1
-    });
-
-    if(!result.cancelled) {
-      const response = await fetch(result.uri);
-      const blob  = await response.blob();
-      const path = `images/testPosts${uuidv5.URL}`
-      const storageRef = storage.ref(path);
-    storageRef.put(blob)
-    .then(() => console.log("Success"))
-    .catch(err => console.log("ERROR"));
-
-    storageRef.getDownloadURL().then(url => {
-      this.setState({url});
-    });
-
-    }
-  }
-  render() {
+const Post = ({navigation}) => {
+  
+ 
     return (
        <SafeAreaView style={styles.container}>
             <View style={styles.newStyle}> 
@@ -79,15 +31,25 @@ post = (money, title, url) => {
               <TextInput style={styles.inputTextBox}/>
             </View>
           </View>
-          <View>
+          <View style={styles.numberTextContainor}>
             <Text> 1 2</Text>
+          </View>
+          <View style={styles.buttonContainor}>
+            <TouchableOpacity style={styles.buttonStyles}>
+              <Text style={styles.textInput}> Clear All</Text>
+            
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.buttonNext}   onPress={() => navigation.navigate('PostV2')}>
+              <Text style={styles.textButtonNext}> Next</Text>
+            </TouchableOpacity>
           </View>
           </SafeAreaView>
 
   
     );
   }
-}
+
   
   const styles = StyleSheet.create({
     container: {
@@ -138,7 +100,7 @@ post = (money, title, url) => {
       paddingBottom: 32
    },
    textBoxContainer: {
-      paddingBottom: 16
+      paddingBottom: 5
    },
    inputTextBox: {
     paddingBottom: 5,
@@ -147,7 +109,39 @@ post = (money, title, url) => {
     borderWidth: 0.5,
     width: 360,
     borderRadius: 5
-   }
+   },
+   buttonStyles: {
+      width: 144,
+      height: 40,
+      borderColor: '#676767',
+      borderWidth: 0.5,
+      borderRadius: 20,
+      alignItems: "center",
+      justifyContent: "center"
+   },
+   buttonNext: {
+    width: 144,
+    height: 40,
+    borderColor: '#66BEFD',
+    borderWidth: 0.5,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center"
+ },
+ textButtonNext: {
+    color: '#66BEFD',
+    fontSize: 14
+ },
+ buttonContainor: {
+   flexDirection: 'row',
+   justifyContent: 'space-evenly'
+
+ },
+ numberTextContainor: {
+   alignItems: "center",
+   justifyContent: "center",
+   padding: 16
+ }
 
   });
 
@@ -172,3 +166,13 @@ post = (money, title, url) => {
 //            }>
 //            <Text style = {styles.submitButtonText}> Submit </Text>
 //         </TouchableOpacity>
+    // shadowOffset: {
+      //   width: 0,
+      //   height: 4,
+      // },
+      // shadowOpacity: 0.32,
+      // shadowRadius: 5.46,      
+
+
+
+export default Post;
