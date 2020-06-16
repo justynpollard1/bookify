@@ -5,6 +5,7 @@ import Post from '../components/Post'
 import Message from '../components/Message'
 import Notification from '../components/Notification'
 import Profile from '../components/Profile'
+import {PRIMARY_COLOR } from '../constants/colors'
 
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -19,10 +20,12 @@ export function HomeStackScreen() {
       options={{
         title: 'Bookify',
         headerStyle: {
-        backgroundColor: '#66BEFD'
+          borderBottomColor: PRIMARY_COLOR,
+          borderWidth: 0.5
+          
       },
       headerTitleStyle: {
-        color: '#FFFFFF'
+        color: PRIMARY_COLOR
       }
     }}
 
@@ -36,13 +39,16 @@ const MessageStack = createStackNavigator();
 export function MessageStackScreen() {
   return (
     <MessageStack.Navigator>
-      <HomeStack.Screen name="Message" component={Message} 
-      options={{
+      <MessageStack.Screen name="Message" component={Message} 
+       options={{
+        title: 'Message',
         headerStyle: {
-        backgroundColor: '#66BEFD'
+          borderBottomColor: PRIMARY_COLOR,
+          borderWidth: 0.5
+          
       },
       headerTitleStyle: {
-        color: '#FFFFFF'
+        color: PRIMARY_COLOR
       }
     }}
       />
@@ -56,13 +62,16 @@ const PostStack = createStackNavigator();
 export function PostStackScreen() {
   return (
     <PostStack.Navigator>
-      <HomeStack.Screen name="Post" component={Post} 
-      options={{
+      <PostStack.Screen name="Post" component={Post} 
+       options={{
+        title: 'Create a Post',
         headerStyle: {
-        backgroundColor: '#66BEFD'
+          borderBottomColor: PRIMARY_COLOR,
+          borderWidth: 0.5
+          
       },
       headerTitleStyle: {
-        color: '#FFFFFF'
+        color: PRIMARY_COLOR
       }
     }}
       
@@ -78,13 +87,16 @@ const NotificationStack = createStackNavigator();
 export function NotificationStackScreen() {
   return (
     <NotificationStack.Navigator>
-      <HomeStack.Screen name="Notification" component={Notification} 
-      options={{
+      <NotificationStack.Screen name="Notification" component={Notification} 
+       options={{
+        title: 'Notification',
         headerStyle: {
-        backgroundColor: '#66BEFD'
+          borderBottomColor: PRIMARY_COLOR,
+          borderWidth: 0.5
+          
       },
       headerTitleStyle: {
-        color: '#FFFFFF'
+        color: PRIMARY_COLOR
       }
     }}
       
@@ -99,13 +111,16 @@ const ProfileStack = createStackNavigator();
  export function ProfileStackScreen() {
   return (
     <ProfileStack.Navigator>
-      <HomeStack.Screen name="Profile" component={Profile} 
+      <ProfileStack.Screen name="Profile" component={Profile} 
       options={{
+        title: 'Profile',
         headerStyle: {
-        backgroundColor: '#66BEFD'
+          borderBottomColor: PRIMARY_COLOR,
+          borderWidth: 0.5
+          
       },
       headerTitleStyle: {
-        color: '#FFFFFF'
+        color: PRIMARY_COLOR
       }
     }}
       />

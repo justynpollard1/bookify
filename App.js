@@ -2,57 +2,78 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer, TabActions } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import {HomeStackScreen, ProfileStackScreen, MessageStackScreen, PostStackScreen, NotificationStackScreen} from './stack/Stack'
+import {PRIMARY_COLOR, LIGHT_GREY} from './constants/colors'
 
 import {decode, encode} from 'base-64'
+
+
+//Needed this to run firestore  keeping this for now just in caase we might need to use later
 
 if (!global.btoa) {  global.btoa = encode }
 
 if (!global.atob) { global.atob = decode }
 
 
-const Tab = createBottomTabNavigator();
+
+
+
+const Tab = createBottomTabNavigator(
+);
 
 export default function App() {
   return (
    
 <NavigationContainer>
-  <Tab.Navigator  
-  screenOptions={({ route }) => ({
-          tabBarIcon: ({  color }) => {
-            let iconName;
-
-            if (route.name === 'Home') {
-              iconName = 'home' ;
-            } else if (route.name === 'Message') {
-              iconName = 'message';
-            } else if (route.name === 'Post') {
-              iconName = 'add-circle-outline';
-            } else if (route.name === 'Notification') {
-              iconName = 'notifications-none';
-            } else if (route.name === 'Profile') {
-              iconName = 'account-circle';
-            }
-
-            // You can return any component that you like here!
-            return <MaterialIcons name={iconName} color={color} />;
-          },
-        })}
+<Tab.Navigator  
         tabBarOptions={{
-          activeTintColor: 'white',
-          inactiveTintColor: 'gray',
+          activeTintColor: PRIMARY_COLOR,
+          inactiveTintColor: LIGHT_GREY,
+          showLabel: false,
           style: {
-            backgroundColor: '#66BEFD'
+            borderTopColor:  PRIMARY_COLOR,
+            borderWidth: 0.5,
           }
         }}
         >
-    <Tab.Screen name="Home" component={HomeStackScreen}></Tab.Screen>
-    <Tab.Screen name="Message" component={MessageStackScreen}></Tab.Screen>
-    <Tab.Screen name="Post" component={PostStackScreen}></Tab.Screen>
-    <Tab.Screen name="Notification" component={NotificationStackScreen}></Tab.Screen>
-    <Tab.Screen name="Profile" component={ProfileStackScreen}></Tab.Screen>
+    <Tab.Screen name="Home" 
+    component={HomeStackScreen}
+    options={{
+      tabBarIcon: ({color})=> {
+         return <MaterialIcons name='home' size={24} color={color}/>
+      }
+    }}
+    ></Tab.Screen>
+    <Tab.Screen name="Message" component={MessageStackScreen}
+    options={{
+      tabBarIcon: ({color})=> {
+         return <MaterialCommunityIcons name="message-text-outline" size={24} color={color}/>
+      }
+    }}
+    ></Tab.Screen>
+    <Tab.Screen name="Post" component={PostStackScreen}
+    options={{
+      tabBarIcon: ({color})=> {
+         return <Ionicons name="md-add-circle-outline" size={24} color={color} />
+      }
+    }}></Tab.Screen>
+    <Tab.Screen name="Notification" component={NotificationStackScreen}
+    options={{
+      tabBarIcon: ({color})=> {
+         return <MaterialIcons name='notifications-none' size={24} color={color}/>
+      }
+    }}
+    ></Tab.Screen>
+    <Tab.Screen name="Profile" component={ProfileStackScreen}
+    options={{
+      tabBarIcon: ({color})=> {
+         return <MaterialCommunityIcons name="account-circle-outline" size={24} color={color} />
+      }
+    }}
+    ></Tab.Screen>
   </Tab.Navigator>
+
 </NavigationContainer>
    
 
@@ -69,3 +90,25 @@ const styles = StyleSheet.create({
 });
 
 
+ 
+
+// screenOptions={({ route }) => ({
+//   tabBarIcon: ({  color }) => {
+//     let iconName;
+
+//     if (route.name === 'Home') {
+//       iconName = 'home' ;
+//     } else if (route.name === 'Message') {
+//       iconName = 'message';
+//     } else if (route.name === 'Post') {
+//       iconName = 'add-circle-outline';
+//     } else if (route.name === 'Notification') {
+//       iconName = 'notifications-none';
+//     } else if (route.name === 'Profile') {
+//       iconName = 'account-circle';
+//     }
+
+//     // You can return any component that you like here!
+//     return <MaterialIcons name={iconName} color={color}  size={24} />;
+//   },
+// })}
