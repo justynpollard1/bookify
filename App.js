@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer, TabActions } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import {HomeStackScreen, ProfileStackScreen, MessageStackScreen, PostStackScreen, NotificationStackScreen} from './stack/Stack'
 import {PRIMARY_COLOR, LIGHT_GREY} from './constants/colors'
 
@@ -41,7 +41,7 @@ export default function App() {
     component={HomeStackScreen}
     options={{
       tabBarIcon: ({color})=> {
-         return <MaterialIcons name='home' size={24} color={color}/>
+         return <MaterialCommunityIcons name='home-outline' size={24} color={color}/>
       }
     }}
     ></Tab.Screen>
