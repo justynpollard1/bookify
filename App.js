@@ -4,7 +4,7 @@ import { NavigationContainer, TabActions } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons, MaterialIcons, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import {HomeStackScreen, ProfileStackScreen, MessageStackScreen, PostStackScreen, NotificationStackScreen} from './stack/Stack'
-import {PRIMARY_COLOR, LIGHT_GREY} from './constants/colors'
+import {PRIMARY_COLOR, LIGHT_GREY, ICON_ACTIVE_COLOR, ICON_INACTIVE_COLOR} from './constants/colors'
 
 import {decode, encode} from 'base-64'
 
@@ -28,8 +28,8 @@ export default function App() {
 <NavigationContainer>
 <Tab.Navigator  
         tabBarOptions={{
-          activeTintColor: PRIMARY_COLOR,
-          inactiveTintColor: LIGHT_GREY,
+          activeTintColor: ICON_ACTIVE_COLOR,
+          inactiveTintColor: ICON_INACTIVE_COLOR,
           showLabel: false,
           style: {
             borderTopColor:  PRIMARY_COLOR,
