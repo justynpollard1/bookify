@@ -93,6 +93,7 @@ const Login = () => {
     return (
         
        <StyledView>
+          
            
           <StyledHeaderText> bookify </StyledHeaderText>
           <StyledTextInput
