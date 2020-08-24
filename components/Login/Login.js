@@ -54,8 +54,6 @@ display: flex;
 align-items: center;
 text-align: center;
 text-transform: lowercase;
-
-
 `
 const SignUpText = styled.Text`
     font-size: 14px;
