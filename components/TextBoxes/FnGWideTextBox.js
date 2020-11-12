@@ -1,6 +1,7 @@
 import { getLightEstimationEnabled } from 'expo/build/AR';
 import React, { Component } from 'react';
 import { TextInput, StyleSheet, Text, View} from 'react-native';
+import RobotoRegular from '../../assets/fonts/Roboto'
 
 export default function FnGWideTextBox({label, placeholder, multiline, onChangeText}){
   
