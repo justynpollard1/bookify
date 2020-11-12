@@ -9,7 +9,7 @@ import { PRIMARY_COLOR, LIGHT_GREY } from "../../constants/colors";
 export default function FnGButton({text, onPress, buttonStyle}){
     if (buttonStyle === "primary"){
         return(
-            <TouchableOpacity onPress={onPress}>
+            <TouchableOpacity onPress={onPress} style={styles.touchableOpacityStyle}>
                 <View style={[styles.button, styles.primaryBorderColor]}>
                     <Text style={[styles.buttonText, styles.primaryFontColor]}>{text}</Text>
                 </View>
@@ -18,7 +18,7 @@ export default function FnGButton({text, onPress, buttonStyle}){
     }
     else if (buttonStyle === "secondary"){
         return(
-            <TouchableOpacity onPress={onPress}>
+            <TouchableOpacity onPress={onPress} style={styles.touchableOpacityStyle}>
                 <View style={[styles.button, styles.secondaryBorderColor]}>
                     <Text style={[styles.buttonText, styles.secondaryFontColor]}>{text}</Text>
                 </View>
@@ -27,7 +27,7 @@ export default function FnGButton({text, onPress, buttonStyle}){
     }
     else{
         return(
-            <TouchableOpacity onPress={onPress}>
+            <TouchableOpacity onPress={onPress} style={styles.touchableOpacityStyle}>
                 <View style={styles.filledBackgroundButton}>
                     <Text style={styles.buttonText, styles.filledFontColor}>{text}</Text>
                 </View>
@@ -37,14 +37,19 @@ export default function FnGButton({text, onPress, buttonStyle}){
 }
 
 const styles = StyleSheet.create({
+    touchableOpacityStyle:{
+        marginLeft: 25,
+        marginRight: 25,
+    },
     button:{
         borderRadius: 5,
         paddingHorizontal: 22,
         paddingVertical: 10,
         borderWidth: 1,
         width: 122,
-        height: 40
+        height: 40,
     },
+
     buttonText:{
         fontWeight: 'normal',
         fontSize: 18,

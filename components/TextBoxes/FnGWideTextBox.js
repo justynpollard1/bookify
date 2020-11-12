@@ -1,9 +1,9 @@
 import { getLightEstimationEnabled } from 'expo/build/AR';
 import React, { Component } from 'react';
 import { TextInput, StyleSheet, Text, View} from 'react-native';
-import RobotoRegular from '../../assets/fonts/Roboto'
 
-export default function FnGWideTextBox({label, placeholder, multiline, onChangeText}){
+
+export default function FnGWideTextBox({label, placeholder, multiline, onChangeText, onFocus}){
   
   if (multiline){
   return (
@@ -15,6 +15,7 @@ export default function FnGWideTextBox({label, placeholder, multiline, onChangeT
           multiline={true}
           numberOfLines={6}
           onChangeText={onChangeText}
+          onFocus={onFocus}
       ></TextInput>
     </View>
   )
@@ -27,6 +28,7 @@ export default function FnGWideTextBox({label, placeholder, multiline, onChangeT
           style={styles.singleLineStyle}
           placeholder={placeholder}
           onChangeText={onChangeText}
+          onFocus={onFocus}
         ></TextInput>
       </View>
       
@@ -41,7 +43,7 @@ const styles = StyleSheet.create({
       width: 360,
       height: 40,
       paddingLeft: 5,
-      marginBottom: 30,
+      marginBottom: 20,
       borderColor: '#676767'
       
     },
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
       width: 360,
       height: 100,
       paddingLeft: 5,
-      marginBottom: 30,
+      marginBottom: 20,
       borderColor: '#676767'
     },
 

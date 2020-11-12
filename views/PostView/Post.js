@@ -3,58 +3,67 @@ import {
   StyleSheet, 
   SafeAreaView,
   Alert,
-  Text
+  View,
+  KeyboardAvoidingView
 } from 'react-native';
 
 import FnGTextBoxPrimary from '../../components/TextBoxes/FnGWideTextBox'
 import FnGShortTextBox from '../../components/TextBoxes/FnGShortTextBox'
+import FnGAddBookImageButton from '../../components/Buttons/FnGAddBookImageButton'
 import FnGButton from '../../components/Buttons/FnGButton'
 
 const  Post = () =>  {
   const [bookTitle, setBookTitle] = useState()
   const [bookAuthor, setBookAuthor] = useState()
   const [bookDescription, setBookDescription] = useState()
-  
+  const [keyboardAvoider, setKeyboardAvoider] = useState(false)
   return (
-    
+    <KeyboardAvoidingView behavior="position" enabled={keyboardAvoider}>
     <SafeAreaView style={styles.container}>
+      <FnGAddBookImageButton
+        onPress={() => Alert.alert('Adding Image Pressed')}>
+
+      </FnGAddBookImageButton>
       <FnGTextBoxPrimary 
         label="What is the name of your book?" 
         placeholder="Title" 
         multiline={false}
-        onChangeText={(val) => setBookTitle(val)}>
+        onChangeText={(val) => setBookTitle(val)}
+        onFocus={() => setKeyboardAvoider(false)}>
       </FnGTextBoxPrimary>
 
       <FnGTextBoxPrimary 
         label="Who is the author of the book?" 
         placeholder="Author" 
         multiline={false}
-        onChangeText={(val) => setBookAuthor(val)}>
+        onChangeText={(val) => setBookAuthor(val)}
+        onFocus={() => setKeyboardAvoider(true)}>
       </FnGTextBoxPrimary>
 
       <FnGTextBoxPrimary 
         label="Tell us a bit about your book." 
         placeholder="Book Description" 
         multiline={true}
-        onChangeText={(val) => setBookDescription(val)}>
+        onChangeText={(val) => setBookDescription(val)}
+        onFocus={() => setKeyboardAvoider(true)}>
       </FnGTextBoxPrimary>
- 
-      <FnGButton 
-        text="Clear All" 
-        onPress={() => Alert.alert('Clear All Pressed')} 
-        buttonStyle="secondary"
-        style={styles.buttonAlignment}>
-      </FnGButton>
 
-      <FnGButton 
-        text="Next" 
-        onPress={() => Alert.alert('Next Pressed')} 
-        buttonStyle="primary">
-      </FnGButton>
+      <View style={styles.buttonAlignment}>
+        <FnGButton 
+          text="Clear All" 
+          onPress={() => Alert.alert('Clear All Pressed')} 
+          buttonStyle="secondary">
+        </FnGButton>
 
+        <FnGButton 
+          text="Next" 
+          onPress={() => Alert.alert('Next Pressed')} 
+          buttonStyle="primary">
+        </FnGButton>
+      </View>
 
     </SafeAreaView>
- 
+    </KeyboardAvoidingView>
   );
 }
 
@@ -62,12 +71,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: 'center',
     backgroundColor: 'white'
   },
 
   buttonAlignment:{
-    display: "flex"
+    flexDirection:'row',
+    marginTop: 20,
   }
 });
 
