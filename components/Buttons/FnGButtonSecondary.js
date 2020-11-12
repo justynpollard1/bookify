@@ -18,14 +18,15 @@ export default function FnGButtonSecondary({text, onPress}){
 
 const styles = StyleSheet.create({
     button:{
-        borderRadius: 10,
-        backgroundColor: LIGHT_GREY,
-        paddingHorizontal: 20,
-        paddingVertical: 10
+        borderRadius: 5,
+        paddingHorizontal: 22,
+        paddingVertical: 10,
+        borderWidth: 1
+        
     },
     buttonText:{
-        color: 'white',
-        fontWeight: 'bold',
+        color: LIGHT_GREY,
+        fontWeight: 'normal',
         fontSize: 18,
         textAlign: 'center'
     }

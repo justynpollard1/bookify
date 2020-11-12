@@ -6,7 +6,7 @@ import {
     View} from 'react-native'
 import { PRIMARY_COLOR } from "../../constants/colors";
 
-export default function FnGButtonPrimary({text, onPress}){
+export default function FnGButtonFilledPrimary({text, onPress}){
     return(
     <TouchableOpacity onPress={onPress}>
         <View style={styles.button}>
@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         paddingHorizontal: 22,
         paddingVertical: 10,
-        borderWidth: 1
+        backgroundColor: PRIMARY_COLOR
     },
     buttonText:{
-        color: PRIMARY_COLOR,
+        color: 'white',
         fontWeight: 'normal',
         fontSize: 18,
         textAlign: 'center'

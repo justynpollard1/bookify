@@ -9,6 +9,7 @@ import {
   Alert} from 'react-native';
 import FnGButtonPrimary from './Buttons/FnGButtonPrimary'
 import FnGButtonSecondary from './Buttons/FnGButtonSecondary'
+import FnGButtonFilledPrimary from './Buttons/FnGButtonFilledPrimary'
 
 const  Post = () =>  {
   return (
@@ -27,7 +28,7 @@ const  Post = () =>  {
       </View>
       <FnGButtonPrimary text="Next" onPress={() => Alert.alert('Next Pressed')}></FnGButtonPrimary>
       <FnGButtonSecondary text="Clear" onPress={() => Alert.alert('Cleared')}></FnGButtonSecondary>
-          
+      <FnGButtonFilledPrimary text="Filled" onPress={() => Alert.alert('Pressed Filled')}></FnGButtonFilledPrimary>   
     </SafeAreaView>
   );
 }
