@@ -7,10 +7,9 @@ import {
   Alert,
   KeyboardAvoidingView,
   Platform} from 'react-native';
-import FnGButtonPrimary from '../../components/Buttons/FnGButtonPrimary'
-import FnGButtonSecondary from '../../components/Buttons/FnGButtonSecondary'
-import FnGButtonFilledPrimary from '../../components/Buttons/FnGButtonFilledPrimary'
+
 import FnGTextBoxPrimary from '../../components/TextBoxes/FnGTextBox'
+import FnGButton from '../../components/Buttons/FnGButton'
 
 const  Post = () =>  {
   return (
@@ -29,15 +28,19 @@ const  Post = () =>  {
       <View className="book-description-view">
         <Text>Book's Description</Text>
       </View>
-      <FnGButtonPrimary text="Next" onPress={() => Alert.alert('Next Pressed')}></FnGButtonPrimary>
-      <FnGButtonSecondary text="Clear" onPress={() => Alert.alert('Cleared')}></FnGButtonSecondary>
-      <FnGButtonFilledPrimary text="Filled" onPress={() => Alert.alert('Pressed Filled')}></FnGButtonFilledPrimary>   
+      <FnGButton 
+        text="FnG Button" 
+        onPress={() => Alert.alert('FnG Button Pressed')} 
+        buttonStyle="filled">
+
+        </FnGButton>
       
       <FnGTextBoxPrimary placeholder="Single Line" multiline={false}></FnGTextBoxPrimary>
       <KeyboardAvoidingView behavior="padding">
       <FnGTextBoxPrimary placeholder="Multi Line" multiline={true}></FnGTextBoxPrimary>
       </KeyboardAvoidingView>
-      <FnGButtonSecondary text="Clear" onPress={() => Alert.alert('Cleared')}></FnGButtonSecondary>
+
+      
     </SafeAreaView>
     
     

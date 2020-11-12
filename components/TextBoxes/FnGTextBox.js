@@ -5,7 +5,6 @@ export default function FnGTextBox({placeholder, multiline}){
   
   if (multiline){
   return (
-    
       <TextInput
         style={styles.multilineStyle}
         placeholder={placeholder}
