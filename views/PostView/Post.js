@@ -1,49 +1,60 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { 
   StyleSheet, 
-  Text, 
-  View, 
   SafeAreaView,
   Alert,
-  KeyboardAvoidingView,
-  Platform} from 'react-native';
+  Text
+} from 'react-native';
 
 import FnGTextBoxPrimary from '../../components/TextBoxes/FnGTextBox'
 import FnGButton from '../../components/Buttons/FnGButton'
 
 const  Post = () =>  {
+  const [bookTitle, setBookTitle] = useState()
+  const [bookAuthor, setBookAuthor] = useState()
+  const [bookDescription, setBookDescription] = useState()
+  
   return (
     
     <SafeAreaView style={styles.container}>
-     
-      <View className="add-image-view">
-          <Text> Tap to Add Image </Text>
-      </View>
-      <View className="book-name-view">
-        <Text>Book's Name</Text>
-      </View>
-      <View className="author-name-view">
-        <Text>Author's Name</Text>
-      </View>
-      <View className="book-description-view">
-        <Text>Book's Description</Text>
-      </View>
+      <FnGTextBoxPrimary 
+        label="What is the name of your book?" 
+        placeholder="Title" 
+        multiline={false}
+        onChangeText={(val) => setBookTitle(val)}>
+      </FnGTextBoxPrimary>
+
+      <FnGTextBoxPrimary 
+        label="Who is the author of the book?" 
+        placeholder="Author" 
+        multiline={false}
+        onChangeText={(val) => setBookAuthor(val)}>
+      </FnGTextBoxPrimary>
+
+      <FnGTextBoxPrimary 
+        label="Tell us a bit about your book." 
+        placeholder="Book Description" 
+        multiline={true}
+        onChangeText={(val) => setBookDescription(val)}>
+      </FnGTextBoxPrimary>
+ 
       <FnGButton 
-        text="FnG Button" 
-        onPress={() => Alert.alert('FnG Button Pressed')} 
-        buttonStyle="filled">
+        text="Clear All" 
+        onPress={() => Alert.alert('Clear All Pressed')} 
+        buttonStyle="secondary"
+        style={styles.buttonAlignment}>
+      </FnGButton>
 
-        </FnGButton>
-      
-      <FnGTextBoxPrimary placeholder="Single Line" multiline={false}></FnGTextBoxPrimary>
-      <KeyboardAvoidingView behavior="padding">
-      <FnGTextBoxPrimary placeholder="Multi Line" multiline={true}></FnGTextBoxPrimary>
-      </KeyboardAvoidingView>
+      <FnGButton 
+        text="Next" 
+        onPress={() => Alert.alert('Next Pressed')} 
+        buttonStyle="primary">
+      </FnGButton>
 
       
+
     </SafeAreaView>
-    
-    
+ 
   );
 }
 
@@ -54,6 +65,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'white'
   },
+
+  buttonAlignment:{
+    display: "flex"
+  }
 });
 
 export default Post;
