@@ -52,7 +52,6 @@ const  Post = () =>  {
         buttonStyle="primary">
       </FnGButton>
 
-      
 
     </SafeAreaView>
  

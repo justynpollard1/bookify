@@ -12,7 +12,7 @@ export default function FnGWideTextBox({label, placeholder, multiline, onChangeT
           style={styles.multilineStyle}
           placeholder={placeholder}
           multiline={true}
-          numberOfLines={10}
+          numberOfLines={6}
           onChangeText={onChangeText}
       ></TextInput>
     </View>
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
       color: '#676767',
       paddingLeft: 5,
       paddingBottom: 2,
+      
     },
 
 })
