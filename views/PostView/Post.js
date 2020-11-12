@@ -6,7 +6,8 @@ import {
   Text
 } from 'react-native';
 
-import FnGTextBoxPrimary from '../../components/TextBoxes/FnGTextBox'
+import FnGTextBoxPrimary from '../../components/TextBoxes/FnGWideTextBox'
+import FnGShortTextBox from '../../components/TextBoxes/FnGShortTextBox'
 import FnGButton from '../../components/Buttons/FnGButton'
 
 const  Post = () =>  {
