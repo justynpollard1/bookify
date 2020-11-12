@@ -1,34 +1,14 @@
 import React from 'react';
 import { 
   StyleSheet, 
-  Text, 
-  View, 
   SafeAreaView,
-  TextInput,
-  Button,
-  Alert} from 'react-native';
-import FnGButtonPrimary from './Buttons/FnGButtonPrimary'
-import FnGButtonSecondary from './Buttons/FnGButtonSecondary'
-import FnGButtonFilledPrimary from './Buttons/FnGButtonFilledPrimary'
+  } from 'react-native';
+import PostBookView from '../views/PostView/Post'
 
 const  Post = () =>  {
   return (
     <SafeAreaView style={styles.container}>
-      <View className="add-image-view">
-          <Text> Tap to Add Image </Text>
-      </View>
-      <View className="book-name-view">
-        <Text>Book's Name</Text>
-      </View>
-      <View className="author-name-view">
-        <Text>Author's Name</Text>
-      </View>
-      <View className="book-description-view">
-        <Text>Book's Description</Text>
-      </View>
-      <FnGButtonPrimary text="Next" onPress={() => Alert.alert('Next Pressed')}></FnGButtonPrimary>
-      <FnGButtonSecondary text="Clear" onPress={() => Alert.alert('Cleared')}></FnGButtonSecondary>
-      <FnGButtonFilledPrimary text="Filled" onPress={() => Alert.alert('Pressed Filled')}></FnGButtonFilledPrimary>   
+      <PostBookView></PostBookView>
     </SafeAreaView>
   );
 }
