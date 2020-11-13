@@ -4,7 +4,10 @@ import {
   SafeAreaView,
   Alert,
   View,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard
 } from 'react-native';
 
 import FnGTextBoxPrimary from '../../components/TextBoxes/FnGWideTextBox'
@@ -18,8 +21,13 @@ const  Post = () =>  {
   const [bookDescription, setBookDescription] = useState()
   const [keyboardAvoider, setKeyboardAvoider] = useState(false)
   return (
-    <KeyboardAvoidingView behavior="position" enabled={keyboardAvoider}>
-    <SafeAreaView style={styles.container}>
+    <KeyboardAvoidingView 
+    
+      behavior="position" 
+      enabled={keyboardAvoider}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <SafeAreaView style={styles.container}>
       <FnGAddBookImageButton
         onPress={() => Alert.alert('Adding Image Pressed')}>
 
@@ -61,8 +69,9 @@ const  Post = () =>  {
           buttonStyle="primary">
         </FnGButton>
       </View>
+      </SafeAreaView>
 
-    </SafeAreaView>
+      </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 }
