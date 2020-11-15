@@ -15,11 +15,12 @@ import FnGShortTextBox from '../../components/TextBoxes/FnGShortTextBox'
 import FnGAddBookImageButton from '../../components/Buttons/FnGAddBookImageButton'
 import FnGButton from '../../components/Buttons/FnGButton'
 
-const  Post = () =>  {
+const  PostPageB = () =>  {
   const [bookTitle, setBookTitle] = useState()
   const [bookAuthor, setBookAuthor] = useState()
   const [bookDescription, setBookDescription] = useState()
   const [keyboardAvoider, setKeyboardAvoider] = useState(false)
+  
   return (
     <KeyboardAvoidingView 
     
@@ -59,7 +60,7 @@ const  Post = () =>  {
       <View style={styles.buttonAlignment}>
         <FnGButton 
           text="Clear All" 
-          onPress={() => Alert.alert('Clear All Pressed')} 
+          onPress={ () => Alert.alert('Cleared')}
           buttonStyle="secondary">
         </FnGButton>
 
@@ -76,11 +77,12 @@ const  Post = () =>  {
   );
 }
 
+export default PostPageB;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: 'white'
   },
 
   buttonAlignment:{
@@ -89,7 +91,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Post;
+
 
 
   // post = (money, title, url) => {
