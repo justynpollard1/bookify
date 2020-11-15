@@ -33,9 +33,12 @@ export default function FnGButton(props){
     }
     else{
         return(
-            <TouchableOpacity onPress={props.onPress} style={styles.touchableOpacityStyle}>
-                <View style={styles.filledBackgroundButton}>
-                    <Text style={styles.buttonText, styles.filledFontColor}>{props.text}</Text>
+            <TouchableOpacity 
+                onPress={props.onPress} 
+                style={styles.touchableOpacityStyle}
+                onFocus={props.onFocus}>
+                <View style={[styles.filledBackgroundButton]}>
+                    <Text style={[styles.buttonText, styles.filledFontColor]}>{props.text}</Text>
                 </View>
             </TouchableOpacity>
         )
@@ -47,6 +50,7 @@ const styles = StyleSheet.create({
         marginLeft: 25,
         marginRight: 25,
     },
+
     button:{
         borderRadius: 5,
         paddingHorizontal: 22,
