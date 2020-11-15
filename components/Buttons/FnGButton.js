@@ -6,10 +6,13 @@ import {
     View} from 'react-native'
 import { PRIMARY_COLOR, LIGHT_GREY } from "../../constants/colors";
 
-export default function FnGButton({text, onPress, buttonStyle}){
+export default function FnGButton({text, onPress, buttonStyle, onFocus}){
     if (buttonStyle === "primary"){
         return(
-            <TouchableOpacity onPress={onPress} style={styles.touchableOpacityStyle}>
+            <TouchableOpacity 
+                onPress={onPress} 
+                style={styles.touchableOpacityStyle}
+                onFocus={onFocus}>
                 <View style={[styles.button, styles.primaryBorderColor]}>
                     <Text style={[styles.buttonText, styles.primaryFontColor]}>{text}</Text>
                 </View>
@@ -18,7 +21,10 @@ export default function FnGButton({text, onPress, buttonStyle}){
     }
     else if (buttonStyle === "secondary"){
         return(
-            <TouchableOpacity onPress={onPress} style={styles.touchableOpacityStyle}>
+            <TouchableOpacity 
+                onPress={onPress} 
+                style={styles.touchableOpacityStyle}
+                onFocus={onFocus}>
                 <View style={[styles.button, styles.secondaryBorderColor]}>
                     <Text style={[styles.buttonText, styles.secondaryFontColor]}>{text}</Text>
                 </View>
