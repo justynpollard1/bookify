@@ -37,30 +37,43 @@ const  PostPageB = () =>  {
         
         <SafeAreaView style={styles.container}>
 
-        <Text>What is the kind of the book?</Text>
-        <View style={styles.defaultBookViewStyle}>
-          <TouchableOpacity style={styles.defaultBookTouchableOpacityStyle}>
-            <Text style={styles.defaultBookTextStyle}>{defaultBookStyles[0].style}</Text>
-          </TouchableOpacity>
+        <View className="book-kind">
+          <Text style={styles.bookKindQuestionStyle}>What is the kind of your book?</Text>
+          <View style={styles.defaultBookViewStyle}>
+            <TouchableOpacity 
+              style={styles.hardcoverTouchableOpacityStyle}
+              onPress={() => setBookStyle(defaultBookStyles[0].style)}>
+              <Text style={styles.defaultBookTextStyle}>{defaultBookStyles[0].style}</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity style={styles.defaultBookTouchableOpacityStyle}>
-            <Text style={styles.defaultBookTextStyle}>{defaultBookStyles[1].style}</Text>
-          </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.paperbackTouchableOpacityStyle}
+              onPress={() => setBookStyle(defaultBookStyles[1].style)}>
+              <Text style={styles.defaultBookTextStyle}>{defaultBookStyles[1].style}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
-        <View style={styles.shortTextBoxAlignment}>
+        <View className="test-view">
+          <Text>{bookStyle} {bookPrice} {bookCourseNumber}</Text>
+        </View>
+
+        <View className="price-and-course" style={styles.shortTextBoxAlignment} >
           <FnGShortTextBox
             label="Price"
             placeholder="Price"
-            onChangeText={(val) => setBookPrice}
-            onFocus={() => setKeyboardAvoider(true)}>
+            onChangeText={(val) => setBookPrice(val)}
+            onFocus={() => setKeyboardAvoider(true)}
+            keyboardType='numeric'>
+            
           </FnGShortTextBox>
           
           <FnGShortTextBox
             label="Course"
             placeholder="CMPT260"
-            onChangeText={(val) => setBookCourseNumber}
-            onFocus={() => setKeyboardAvoider(true)}>
+            onChangeText={(val) => setBookCourseNumber(val)}
+            onFocus={() => setKeyboardAvoider(true)}
+            keyboardType='default'>
           </FnGShortTextBox>
         </View>
 
@@ -108,19 +121,37 @@ const styles = StyleSheet.create({
     
   },
 
-  defaultBookTouchableOpacityStyle:{
+  hardcoverTouchableOpacityStyle:{
     borderWidth: 1,
-    borderRadius: 5,
-    width: 173,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
+    width: 180,
     height: 40,
     borderColor: '#676767',
-    marginBottom: 20
+    marginBottom: 20,
+  },
+
+  paperbackTouchableOpacityStyle:{
+    borderWidth: 1,
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
+    width: 180,
+    height: 40,
+    borderColor: '#676767',
+    marginBottom: 20,
+    borderLeftWidth: 0
   },
 
   defaultBookTextStyle:{
     color: LIGHT_GREY,
     textAlign: 'center',
     paddingTop: 10,
+    fontSize: 16
+  },
+
+  bookKindQuestionStyle:{
+    marginLeft: 2,
+    marginBottom: 2,
     fontSize: 16
   }
 });

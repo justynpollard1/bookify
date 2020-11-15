@@ -12,6 +12,7 @@ export default function FnGShortTextBox(props){
           placeholder={props.placeholder}
           onChangeText={props.onChangeText}
           onFocus={props.onFocus}
+          keyboardType={props.keyboardType}
         ></TextInput>
       </View>
       
