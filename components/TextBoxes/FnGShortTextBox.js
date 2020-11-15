@@ -11,6 +11,7 @@ export default function FnGShortTextBox(props){
           style={styles.shortTextBoxStyle}
           placeholder={props.placeholder}
           onChangeText={props.onChangeText}
+          onFocus={props.onFocus}
         ></TextInput>
       </View>
       
@@ -26,14 +27,16 @@ const styles = StyleSheet.create({
       height: 40,
       paddingLeft: 5,
       marginBottom: 20,
-      borderColor: '#676767'
+      borderColor: '#676767',
+      marginLeft: 7,
+      marginRight: 7
       
     },
 
     labelStyle:{
-      fontSize: 14,
+      fontSize: 16,
       color: '#676767',
-      paddingLeft: 5,
+      paddingLeft: 10,
       paddingBottom: 2,
     },
 
