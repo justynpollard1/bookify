@@ -5,7 +5,6 @@ import {
   Alert,
   View,
   KeyboardAvoidingView,
-  Platform,
   TouchableWithoutFeedback,
   Keyboard
 } from 'react-native';
