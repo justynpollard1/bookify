@@ -5,20 +5,25 @@ import {
   Alert,
   View,
   KeyboardAvoidingView,
-  Platform,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Text,
+  TouchableOpacity
 } from 'react-native';
+import { PRIMARY_COLOR, LIGHT_GREY } from "../../constants/colors";
 
-import FnGTextBoxPrimary from '../../components/TextBoxes/FnGWideTextBox'
+import FnGImageCarousel from '../../components/Carousel/FnGImageCarousel'
 import FnGShortTextBox from '../../components/TextBoxes/FnGShortTextBox'
-import FnGAddBookImageButton from '../../components/Buttons/FnGAddBookImageButton'
 import FnGButton from '../../components/Buttons/FnGButton'
 
+const defaultBookStyles = [{"id": 1, "style": "Hardcover"}, {"id": 2, "style": "Paperback"}]
+const defaultBookCondition = [{"id": 1, "condition": "Poor"}, {"id": 2, "condition": "Fair"}, {"id": 3, "condition": "Good"}]
+
 const  PostPageB = () =>  {
-  const [bookTitle, setBookTitle] = useState()
-  const [bookAuthor, setBookAuthor] = useState()
-  const [bookDescription, setBookDescription] = useState()
+  const [bookPrice, setBookPrice] = useState()
+  const [bookCourseNumber, setBookCourseNumber] = useState()
+  const [bookStyle, setBookStyle] = useState()
+  const [bookCondition, setBookCondition] = useState()
   const [keyboardAvoider, setKeyboardAvoider] = useState(false)
   
   return (
@@ -27,49 +32,53 @@ const  PostPageB = () =>  {
       behavior="position" 
       enabled={keyboardAvoider}
       >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <FnGImageCarousel></FnGImageCarousel>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        
         <SafeAreaView style={styles.container}>
-      <FnGAddBookImageButton
-        onPress={() => Alert.alert('Adding Image Pressed')}>
 
-      </FnGAddBookImageButton>
-      <FnGTextBoxPrimary 
-        label="What is the name of your book?" 
-        placeholder="Title" 
-        multiline={false}
-        onChangeText={(val) => setBookTitle(val)}
-        onFocus={() => setKeyboardAvoider(false)}>
-      </FnGTextBoxPrimary>
+        <Text>What is the kind of the book?</Text>
+        <View style={styles.defaultBookViewStyle}>
+          <TouchableOpacity style={styles.defaultBookTouchableOpacityStyle}>
+            <Text style={styles.defaultBookTextStyle}>{defaultBookStyles[0].style}</Text>
+          </TouchableOpacity>
 
-      <FnGTextBoxPrimary 
-        label="Who is the author of the book?" 
-        placeholder="Author" 
-        multiline={false}
-        onChangeText={(val) => setBookAuthor(val)}
-        onFocus={() => setKeyboardAvoider(true)}>
-      </FnGTextBoxPrimary>
+          <TouchableOpacity style={styles.defaultBookTouchableOpacityStyle}>
+            <Text style={styles.defaultBookTextStyle}>{defaultBookStyles[1].style}</Text>
+          </TouchableOpacity>
+        </View>
 
-      <FnGTextBoxPrimary 
-        label="Tell us a bit about your book." 
-        placeholder="Book Description" 
-        multiline={true}
-        onChangeText={(val) => setBookDescription(val)}
-        onFocus={() => setKeyboardAvoider(true)}>
-      </FnGTextBoxPrimary>
+        <View style={styles.shortTextBoxAlignment}>
+          <FnGShortTextBox
+            label="Price"
+            placeholder="Price"
+            onChangeText={(val) => setBookPrice}
+            onFocus={() => setKeyboardAvoider(true)}>
+          </FnGShortTextBox>
+          
+          <FnGShortTextBox
+            label="Course"
+            placeholder="CMPT260"
+            onChangeText={(val) => setBookCourseNumber}
+            onFocus={() => setKeyboardAvoider(true)}>
+          </FnGShortTextBox>
+        </View>
 
-      <View style={styles.buttonAlignment}>
-        <FnGButton 
-          text="Clear All" 
-          onPress={ () => Alert.alert('Cleared')}
-          buttonStyle="secondary">
-        </FnGButton>
+        
+        <View style={styles.buttonAlignment}>
+          
+          <FnGButton 
+            text="Previous" 
+            onPress={ () => Alert.alert('Previous pressed')}
+            buttonStyle="primary">
+          </FnGButton>
 
-        <FnGButton 
-          text="Next" 
-          onPress={() => Alert.alert('Next Pressed')} 
-          buttonStyle="primary">
-        </FnGButton>
-      </View>
+          <FnGButton 
+            text="Post" 
+            onPress={() => Alert.alert('Post Pressed')} 
+            buttonStyle="filled">
+          </FnGButton>
+        </View>
       </SafeAreaView>
 
       </TouchableWithoutFeedback>
@@ -88,6 +97,31 @@ const styles = StyleSheet.create({
   buttonAlignment:{
     flexDirection:'row',
     marginTop: 20,
+  },
+
+  shortTextBoxAlignment:{
+    flexDirection:'row',
+  },
+
+  defaultBookViewStyle:{
+    flexDirection:'row',
+    
+  },
+
+  defaultBookTouchableOpacityStyle:{
+    borderWidth: 1,
+    borderRadius: 5,
+    width: 173,
+    height: 40,
+    borderColor: '#676767',
+    marginBottom: 20
+  },
+
+  defaultBookTextStyle:{
+    color: LIGHT_GREY,
+    textAlign: 'center',
+    paddingTop: 10,
+    fontSize: 16
   }
 });
 
