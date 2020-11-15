@@ -7,10 +7,10 @@ import {
     Image,
     Dimensions} from 'react-native'
 
-export default function FnGAddBookImageButton({onPress}){
+export default function FnGAddBookImageButton(props){
     return(
         <View>
-            <TouchableOpacity onPress={onPress} style={styles.touchableOpacityStyle}>
+            <TouchableOpacity onPress={props.onPress} style={styles.touchableOpacityStyle}>
                 <Image></Image>
                 <Text style={styles.textStyle}>Tap to add images</Text>
             

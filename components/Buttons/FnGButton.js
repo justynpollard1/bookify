@@ -6,36 +6,36 @@ import {
     View} from 'react-native'
 import { PRIMARY_COLOR, LIGHT_GREY } from "../../constants/colors";
 
-export default function FnGButton({text, onPress, buttonStyle, onFocus}){
-    if (buttonStyle === "primary"){
+export default function FnGButton(props){
+    if (props.buttonStyle === "primary"){
         return(
             <TouchableOpacity 
-                onPress={onPress} 
+                onPress={props.onPress} 
                 style={styles.touchableOpacityStyle}
-                onFocus={onFocus}>
+                onFocus={props.onFocus}>
                 <View style={[styles.button, styles.primaryBorderColor]}>
-                    <Text style={[styles.buttonText, styles.primaryFontColor]}>{text}</Text>
+                    <Text style={[styles.buttonText, styles.primaryFontColor]}>{props.text}</Text>
                 </View>
             </TouchableOpacity>
         )
     }
-    else if (buttonStyle === "secondary"){
+    else if (props.buttonStyle === "secondary"){
         return(
             <TouchableOpacity 
-                onPress={onPress} 
+                onPress={props.onPress} 
                 style={styles.touchableOpacityStyle}
-                onFocus={onFocus}>
+                onFocus={props.onFocus}>
                 <View style={[styles.button, styles.secondaryBorderColor]}>
-                    <Text style={[styles.buttonText, styles.secondaryFontColor]}>{text}</Text>
+                    <Text style={[styles.buttonText, styles.secondaryFontColor]}>{props.text}</Text>
                 </View>
             </TouchableOpacity>
         )
     }
     else{
         return(
-            <TouchableOpacity onPress={onPress} style={styles.touchableOpacityStyle}>
+            <TouchableOpacity onPress={props.onPress} style={styles.touchableOpacityStyle}>
                 <View style={styles.filledBackgroundButton}>
-                    <Text style={styles.buttonText, styles.filledFontColor}>{text}</Text>
+                    <Text style={styles.buttonText, styles.filledFontColor}>{props.text}</Text>
                 </View>
             </TouchableOpacity>
         )

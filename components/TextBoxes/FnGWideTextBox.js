@@ -3,19 +3,19 @@ import React, { Component } from 'react';
 import { TextInput, StyleSheet, Text, View} from 'react-native';
 
 
-export default function FnGWideTextBox({label, placeholder, multiline, onChangeText, onFocus}){
+export default function FnGWideTextBox(props){
   
-  if (multiline){
+  if (props.multiline){
   return (
     <View>
-      <Text style={styles.labelStyle}>{label}</Text>
+      <Text style={styles.labelStyle}>{props.label}</Text>
       <TextInput
           style={styles.multilineStyle}
-          placeholder={placeholder}
-          multiline={true}
+          placeholder={props.placeholder}
+          multiline={props.multiline}
           numberOfLines={6}
-          onChangeText={onChangeText}
-          onFocus={onFocus}
+          onChangeText={props.onChangeText}
+          onFocus={props.onFocus}
       ></TextInput>
     </View>
   )
@@ -23,12 +23,12 @@ export default function FnGWideTextBox({label, placeholder, multiline, onChangeT
   else{
     return(
       <View>
-        <Text style={styles.labelStyle}>{label}</Text>
+        <Text style={styles.labelStyle}>{props.label}</Text>
         <TextInput
           style={styles.singleLineStyle}
-          placeholder={placeholder}
-          onChangeText={onChangeText}
-          onFocus={onFocus}
+          placeholder={props.placeholder}
+          onChangeText={props.onChangeText}
+          onFocus={props.onFocus}
         ></TextInput>
       </View>
       
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
 
     labelStyle:{
-      fontSize: 14,
+      fontSize: 16,
       color: '#676767',
       paddingLeft: 5,
       paddingBottom: 2,

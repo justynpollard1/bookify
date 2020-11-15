@@ -2,15 +2,15 @@ import { getLightEstimationEnabled } from 'expo/build/AR';
 import React, { Component } from 'react';
 import { TextInput, StyleSheet, Text, View} from 'react-native';
 
-export default function FnGShortTextBox({label, placeholder, onChangeText}){
+export default function FnGShortTextBox(props){
   
     return(
       <View>
-        <Text style={styles.labelStyle}>{label}</Text>
+        <Text style={styles.labelStyle}>{props.label}</Text>
         <TextInput
           style={styles.shortTextBoxStyle}
-          placeholder={placeholder}
-          onChangeText={onChangeText}
+          placeholder={props.placeholder}
+          onChangeText={props.onChangeText}
         ></TextInput>
       </View>
       
