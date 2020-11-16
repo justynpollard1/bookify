@@ -2,8 +2,26 @@ import React from "react";
 import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { PRIMARY_COLOR } from "../../constants/colors";
+import * as Google from 'expo-google-app-auth';
+import firebase from '../..firebase/firebase.js';
 
-const StyledView = styled.SafeAreaView`
+var provider = new firebase.auth.GoogleAuthProvider()
+firebase.auth().languageCode = 'pt';
+
+export default class Signup extends React.Component{
+  async signInWithGoogleAsync() {
+    const { type, accessToken, user } = await Google.logInAsync({
+      iosClientId: '876521445865-qlbtfahan7htc9jsvj46smorp45jpdf6.apps.googleusercontent.com',
+      scopes:['profile', 'email']});
+
+    if (type === 'success') {
+      user1 = user;
+    }
+  }
+
+
+  render(){
+    const StyledView = styled.SafeAreaView`
   flex: 1;
   background-color: white;
   flex-direction: column;
@@ -144,10 +162,8 @@ const SignInText = styled.Text`
   color: ${PRIMARY_COLOR};
   font-weight: bold;
 `;
-
-const Signup = (props) => {
-  return (
-    <StyledView>
+    return (
+      <StyledView>
       <TitleContainer>
         <StyledHederTextView>
           Let us help you find your next book
@@ -158,15 +174,14 @@ const Signup = (props) => {
       <SignUpButtonContainer>
         <SocialMediaContainer>
           <SignUpSocialMedia>
-            <SignUpGoogleAndTwitterText>
-              {" "}
-              Sign up with Google{" "}
+            <SignUpGoogleAndTwitterText onPress={() => this.signInWithGoogleAsync()}>
+              {" "}Sign in with Google{" "}
             </SignUpGoogleAndTwitterText>
           </SignUpSocialMedia>
           <SignUpSocialMedia style={{ marginRight: 32 }}>
-            <SignUpGoogleAndTwitterText>
+            <SignUpGoogleAndTwitterText >
               {" "}
-              Sign up with Twitter{" "}
+              Sign in with Twitter{" "}
             </SignUpGoogleAndTwitterText>
           </SignUpSocialMedia>
         </SocialMediaContainer>
@@ -219,7 +234,6 @@ const Signup = (props) => {
         </SignInText>
       </SignInLinkContainer>
     </StyledView>
-  );
-};
-
-export default Signup;
+    );
+  }
+}
