@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import styled from "styled-components/native";
 import { PRIMARY_COLOR } from "../../constants/colors";
+import  {AuthContext} from '../../context/Auth'
 
 const StyledView = styled.SafeAreaView`
   flex: 1;
@@ -88,6 +89,10 @@ const SignInText = styled.Text`
 `;
 
 const Login = (props) => {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  const { login } = React.useContext(AuthContext);
   return (
     <StyledView>
       <TitleContainer>
@@ -98,17 +103,28 @@ const Login = (props) => {
       <TextInputContainer>
         <View style={{ paddingBottom: 10 }}>
           <TextTitle> Username</TextTitle>
-          <StyledTextInput></StyledTextInput>
+          <StyledTextInput
+          autoCapitalize='none'
+          autoCorrect={false}
+          keyboardType='email-address'
+          onChangeText={userEmail => setEmail(userEmail)}
+          ></StyledTextInput>
         </View>
 
         <View style={{ paddingBottom: 10 }}>
           <TextTitle> Password</TextTitle>
-          <StyledTextInput></StyledTextInput>
+          <StyledTextInput
+          passwordRules
+          secureTextEntry={true}
+          onChangeText={userPassword => setPassword(userPassword)}
+          ></StyledTextInput>
         </View>
       </TextInputContainer>
 
       <StyledButtonContainer>
-        <StyledButton>
+        <StyledButton
+        onPress={() => login(email, password)}  
+        >
           <ButtonText> Sign In</ButtonText>
         </StyledButton>
       </StyledButtonContainer>

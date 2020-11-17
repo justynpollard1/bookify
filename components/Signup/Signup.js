@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { PRIMARY_COLOR } from "../../constants/colors";
+import  {AuthContext} from '../../context/Auth'
 
 const StyledView = styled.SafeAreaView`
   flex: 1;
@@ -146,6 +147,23 @@ const SignInText = styled.Text`
 `;
 
 const Signup = (props) => {
+  const { signup } = React.useContext(AuthContext);
+
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    userName: ""
+  })
+
+  const handleChange = (inputName, inputValue) => {
+    
+    setValues(values => ({
+      ...values,
+      [inputName]: inputValue
+  }));
+  }
   return (
     <StyledView>
       <TitleContainer>
@@ -182,32 +200,50 @@ const Signup = (props) => {
         <NameContainer>
           <View>
             <TextTitle>First Name</TextTitle>
-            <StyledNameTextInput> </StyledNameTextInput>
+            <StyledNameTextInput
+            value={values.firstName}
+            onChangeText={text => handleChange('firstName', text)}
+            > </StyledNameTextInput>
           </View>
 
           <View style={{ marginRight: 32 }}>
             <TextTitle>Last Name</TextTitle>
-            <StyledNameTextInput> </StyledNameTextInput>
+            <StyledNameTextInput 
+            value={values.lastName}
+            onChangeText={text => handleChange('lastName', text)}
+            > </StyledNameTextInput>
           </View>
         </NameContainer>
 
         <View style={{ paddingBottom: 10 }}>
           <TextTitle> Username</TextTitle>
-          <StyledTextInput></StyledTextInput>
+          <StyledTextInput value={values.userName}
+            onChangeText={text => handleChange('userName', text)}></StyledTextInput>
         </View>
 
         <View style={{ paddingBottom: 10 }}>
           <TextTitle> Email</TextTitle>
-          <StyledTextInput></StyledTextInput>
+          <StyledTextInput
+           autoCapitalize='none'
+           autoCorrect={false}
+           keyboardType='email-address' 
+           value={values.email}
+           onChangeText={text => handleChange('email', text)}
+          ></StyledTextInput>
         </View>
         <View style={{ paddingBottom: 10 }}>
           <TextTitle> Password</TextTitle>
-          <StyledTextInput></StyledTextInput>
+          <StyledTextInput 
+           passwordRules
+           secureTextEntry={true}
+           value={values.password}
+           onChangeText={text => handleChange('password', text)}
+          ></StyledTextInput>
         </View>
       </TextInputContainer>
 
       <StyledButtonContainer>
-        <StyledButton>
+        <StyledButton  onPress={() => signup(values)}>
           <ButtonText> Sign Up</ButtonText>
         </StyledButton>
       </StyledButtonContainer>
