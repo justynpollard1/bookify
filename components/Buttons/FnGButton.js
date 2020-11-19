@@ -12,7 +12,7 @@ export default function FnGButton(props){
             <TouchableOpacity 
                 onPress={props.onPress} 
                 style={styles.touchableOpacityStyle}
-                onFocus={props.onFocus}>
+                >
                 <View style={[styles.button, styles.primaryBorderColor]}>
                     <Text style={[styles.buttonText, styles.primaryFontColor]}>{props.text}</Text>
                 </View>
@@ -24,23 +24,43 @@ export default function FnGButton(props){
             <TouchableOpacity 
                 onPress={props.onPress} 
                 style={styles.touchableOpacityStyle}
-                onFocus={props.onFocus}>
+                >
                 <View style={[styles.button, styles.secondaryBorderColor]}>
                     <Text style={[styles.buttonText, styles.secondaryFontColor]}>{props.text}</Text>
                 </View>
             </TouchableOpacity>
         )
     }
-    else{
+    else if (props.buttonStyle === "filled"){
         return(
             <TouchableOpacity 
                 onPress={props.onPress} 
                 style={styles.touchableOpacityStyle}
-                onFocus={props.onFocus}>
+                >
                 <View style={[styles.filledBackgroundButton]}>
                     <Text style={[styles.buttonText, styles.filledFontColor]}>{props.text}</Text>
                 </View>
             </TouchableOpacity>
+        )
+    }
+    else if (props.buttonStyle === "close"){
+        return(
+            <TouchableOpacity 
+                onPress={props.onPress} 
+                style={styles.touchableOpacityStyle}
+                >
+                <View style={[styles.closeButtonStyle]}>
+                    <Text style={[ styles.closeTextButtonStyle]}>X</Text>
+                </View>
+            </TouchableOpacity>
+        )
+    }
+    else{
+        return(
+            <View>
+                <Text>Please add buttonStyle prop</Text>
+                <Text>buttonStyle: 'primary', 'secondary', 'filled', 'close'</Text>
+            </View>
         )
     }
 }
@@ -94,5 +114,29 @@ const styles = StyleSheet.create({
 
     filledFontColor:{
         color: "white",
+    },
+
+    closeButtonStyle:{
+        backgroundColor: 'red',
+        borderRadius: 200,
+        width: 50,
+        height: 50,
+        
+        shadowOffset: {
+            width: 0,
+            height: 0,
+        },
+        shadowOpacity: 0.50,
+        shadowRadius: 5.0,
+        
+        elevation: 5,
+    },
+
+    closeTextButtonStyle:{
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign:'center',
+        paddingTop: 14,
+        fontSize: 18,
     }
 })
