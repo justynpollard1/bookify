@@ -1,14 +1,22 @@
 import React from 'react';
+
 import { 
   StyleSheet, 
   SafeAreaView,
-  } from 'react-native';
-import PostBookView from '../views/PostView/Post'
-
+  Modal,
+  useState} from 'react-native';
+import PostBookView from '../views/PostView/PostPageA'
+import PostBookViewB from '../views/PostView/PostPageB'
+import ModalPostBookView from '../views/PostView/ModalPostBook'
+import FnGPostABookButton from '../components/Buttons/FnGPostABookButton'
+import PostABookStack from '../views/PostView/PostABookStack'
 const  Post = () =>  {
+
+  
+
   return (
     <SafeAreaView style={styles.container}>
-      <PostBookView></PostBookView>
+      <ModalPostBookView></ModalPostBookView>
     </SafeAreaView>
   );
 }
@@ -21,7 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
 });
-  export default Post;
+export default Post;
 
 
   // post = (money, title, url) => {
