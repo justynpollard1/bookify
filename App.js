@@ -34,104 +34,109 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
 
+// return (
+    
+//     <NavigationContainer>
+//       {/*<AuthStack/>*/}
+//       {/*Pran Testing Post*/}
+      
+     
+      
+//     </NavigationContainer>
+// );
+
+
   return (
     <NavigationContainer>
-      <AuthStack/>
+      <Tab.Navigator
+        tabBarOptions={{
+          activeTintColor: PRIMARY_COLOR,
+          inactiveTintColor: LIGHT_GREY,
+          showLabel: false,
+          style: {
+            borderTopColor: PRIMARY_COLOR,
+            borderWidth: 0.5,
+          },
+        }}
+      >
+        <Tab.Screen
+          name="Home"
+          component={HomeStackScreen}
+          options={{
+            tabBarIcon: ({ color }) => {
+              return (
+                <MaterialCommunityIcons
+                  name="home-outline"
+                  size={24}
+                  color={color}
+                />
+              );
+            },
+          }}
+        ></Tab.Screen>
+        <Tab.Screen
+          name="Message"
+          component={MessageStackScreen}
+          options={{
+            tabBarIcon: ({ color }) => {
+              return (
+                <MaterialCommunityIcons
+                  name="message-text-outline"
+                  size={24}
+                  color={color}
+                />
+              );
+            },
+          }}
+        ></Tab.Screen>
+        <Tab.Screen
+          name="Post"
+          component={PostStackScreen}
+          options={{
+            tabBarIcon: ({ color }) => {
+              return (
+                <Ionicons
+                  name="md-add-circle-outline"
+                  size={24}
+                  color={color}
+                />
+              );
+            },
+          }}
+        ></Tab.Screen>
+        <Tab.Screen
+          name="Notification"
+          component={NotificationStackScreen}
+          options={{
+            tabBarIcon: ({ color }) => {
+              return (
+                <MaterialIcons
+                  name="notifications-none"
+                  size={24}
+                  color={color}
+                />
+              );
+            },
+          }}
+        ></Tab.Screen>
+        <Tab.Screen
+          name="Profile"
+          component={ProfileStackScreen}
+          options={{
+            tabBarIcon: ({ color }) => {
+              return (
+                <MaterialCommunityIcons
+                  name="account-circle-outline"
+                  size={24}
+                  color={color}
+                />
+              );
+            },
+          }}
+        ></Tab.Screen>
+      </Tab.Navigator>
     </NavigationContainer>
   );
-
-
-  // return (
-  //   <NavigationContainer>
-  //     <Tab.Navigator
-  //       tabBarOptions={{
-  //         activeTintColor: PRIMARY_COLOR,
-  //         inactiveTintColor: LIGHT_GREY,
-  //         showLabel: false,
-  //         style: {
-  //           borderTopColor: PRIMARY_COLOR,
-  //           borderWidth: 0.5,
-  //         },
-  //       }}
-  //     >
-  //       <Tab.Screen
-  //         name="Home"
-  //         component={HomeStackScreen}
-  //         options={{
-  //           tabBarIcon: ({ color }) => {
-  //             return (
-  //               <MaterialCommunityIcons
-  //                 name="home-outline"
-  //                 size={24}
-  //                 color={color}
-  //               />
-  //             );
-  //           },
-  //         }}
-  //       ></Tab.Screen>
-  //       <Tab.Screen
-  //         name="Message"
-  //         component={MessageStackScreen}
-  //         options={{
-  //           tabBarIcon: ({ color }) => {
-  //             return (
-  //               <MaterialCommunityIcons
-  //                 name="message-text-outline"
-  //                 size={24}
-  //                 color={color}
-  //               />
-  //             );
-  //           },
-  //         }}
-  //       ></Tab.Screen>
-  //       <Tab.Screen
-  //         name="Post"
-  //         component={PostStackScreen}
-  //         options={{
-  //           tabBarIcon: ({ color }) => {
-  //             return (
-  //               <Ionicons
-  //                 name="md-add-circle-outline"
-  //                 size={24}
-  //                 color={color}
-  //               />
-  //             );
-  //           },
-  //         }}
-  //       ></Tab.Screen>
-  //       <Tab.Screen
-  //         name="Notification"
-  //         component={NotificationStackScreen}
-  //         options={{
-  //           tabBarIcon: ({ color }) => {
-  //             return (
-  //               <MaterialIcons
-  //                 name="notifications-none"
-  //                 size={24}
-  //                 color={color}
-  //               />
-  //             );
-  //           },
-  //         }}
-  //       ></Tab.Screen>
-  //       <Tab.Screen
-  //         name="Profile"
-  //         component={ProfileStackScreen}
-  //         options={{
-  //           tabBarIcon: ({ color }) => {
-  //             return (
-  //               <MaterialCommunityIcons
-  //                 name="account-circle-outline"
-  //                 size={24}
-  //                 color={color}
-  //               />
-  //             );
-  //           },
-  //         }}
-  //       ></Tab.Screen>
-  //     </Tab.Navigator>
-  //   </NavigationContainer>
-  // );
 }
 
 const styles = StyleSheet.create({
