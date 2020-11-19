@@ -97,7 +97,7 @@ const  PostPageA = (props) =>  {
 
             <FnGButton 
               text="Next" 
-              onPress={() => props.navigation.navigate("PostPageB")} 
+              onPress={() => Alert.alert("Next")} 
               buttonStyle="primary">
             </FnGButton>
           </View>
