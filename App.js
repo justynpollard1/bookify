@@ -24,6 +24,18 @@ if (!global.atob) {
 
 export default function App() {
 
+// return (
+    
+//     <NavigationContainer>
+//       {/*<AuthStack/>*/}
+//       {/*Pran Testing Post*/}
+      
+     
+      
+//     </NavigationContainer>
+// );
+
+
   return (
 <Providers/>
 
