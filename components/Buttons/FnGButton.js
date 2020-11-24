@@ -55,11 +55,23 @@ export default function FnGButton(props){
             </TouchableOpacity>
         )
     }
+    else if (props.buttonStyle === "clear"){
+        return(
+            <TouchableOpacity 
+                onPress={props.onPress} 
+                style={styles.clearTouchableOpacityStyle}
+                >
+                <View style={[styles.clearButtonStyle]}>
+                    <Text style={[ styles.clearTextButtonStyle]}>X</Text>
+                </View>
+            </TouchableOpacity>
+        )
+    }
     else{
         return(
             <View>
                 <Text>Please add buttonStyle prop</Text>
-                <Text>buttonStyle: 'primary', 'secondary', 'filled', 'close'</Text>
+                <Text>buttonStyle: 'primary', 'secondary', 'filled', 'close', 'clear'</Text>
             </View>
         )
     }
@@ -117,15 +129,11 @@ const styles = StyleSheet.create({
     },
 
     closeButtonStyle:{
-        backgroundColor: 'red',
-        borderRadius: 200,
+        backgroundColor: '#C12525',
+        borderRadius: 20,
         width: 50,
         height: 50,
         
-        shadowOffset: {
-            width: 0,
-            height: 0,
-        },
         shadowOpacity: 0.50,
         shadowRadius: 5.0,
         
@@ -138,5 +146,26 @@ const styles = StyleSheet.create({
         textAlign:'center',
         paddingTop: 14,
         fontSize: 18,
+    },
+
+    clearButtonStyle:{
+        backgroundColor: 'grey',
+        borderRadius: 200,
+        width: 20,
+        height: 20,
+    },
+
+    clearTextButtonStyle:{
+        color: 'white',
+        textAlign: 'center',
+        paddingTop: 1
+    },
+
+    clearTouchableOpacityStyle:{
+        marginTop: 1,
+        marginBottom: 1,
+        
     }
+    
+
 })

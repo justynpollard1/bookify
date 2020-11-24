@@ -4,12 +4,24 @@ import {
   StyleSheet, 
   Text, 
   View,
-  Dimensions} from 'react-native';
+  Dimensions,
+  Button} from 'react-native';
+import FnGButton from '../Buttons/FnGButton';
 
 
 export default function FnGWideTextBox(props){
   const [isUserTypedTextEmpty, setIsUserTypedText] = useState(false)
 
+
+  const isTextBoxEmpty = props.isTextBoxEmpty
+  console.log( props.value + " is empty? " + isTextBoxEmpty)
+  var textBoxStyle = {
+    style: isTextBoxEmpty ? styles.emptyTextBoxStyle : styles.singleLineStyle
+  }
+
+  var multilineTextBoxStyle = {
+    style: isTextBoxEmpty ? styles.emptyMultilineTextBoxStyle : styles.multilineStyle
+  }
   
   if (props.multiline){
   return (
@@ -17,28 +29,48 @@ export default function FnGWideTextBox(props){
     <View>
       
       <Text style={styles.labelStyle}>{props.label}</Text>
-      <TextInput
-          style={styles.multilineStyle}
-          placeholder={props.placeholder}
-          multiline={props.multiline}
-          numberOfLines={6}
-          onChangeText={props.onChangeText}
-          onFocus={props.onFocus}
-          scrollEnabled={true}
-      ></TextInput>
+      <View>
+        <TextInput
+            {...multilineTextBoxStyle}
+            placeholder={props.placeholder}
+            multiline={props.multiline}
+            numberOfLines={6}
+            onChangeText={props.onChangeText}
+            onFocus={props.onFocus}
+            scrollEnabled={true}
+            value={props.value}
+        ></TextInput>
+      </View>
+      <View
+          style={styles.clearButtonStyle}>
+          <FnGButton
+           buttonStyle="clear"
+           onPress={props.onPress}></FnGButton>
+        </View>
     </View>
   )
   }
   else{
     return(
-      <View>
+      <View >
         <Text style={styles.labelStyle}>{props.label}</Text>
-        <TextInput
-          style={styles.singleLineStyle}
-          placeholder={props.placeholder}
-          onChangeText={props.onChangeText}
-          onFocus={props.onFocus}
-        ></TextInput>
+        <View style={styles.textClearButtonViewStyle}>
+          <TextInput
+            {...textBoxStyle}
+            placeholder={props.placeholder}
+            onChangeText={props.onChangeText}
+            onFocus={props.onFocus}
+            value={props.value}
+          ></TextInput>
+        </View>
+        <View
+          style={styles.clearButtonStyle}>
+          <FnGButton
+           buttonStyle="clear"
+           onPress={props.onPress}></FnGButton>
+        </View>
+          
+        
       </View>
       
     )
@@ -48,6 +80,7 @@ export default function FnGWideTextBox(props){
 
 const windowWidth = Dimensions.get('window').width
 const textBoxwidth = windowWidth * 0.90
+const textBoxHeight = 40
 
 const styles = StyleSheet.create({
     singleLineStyle:{
@@ -58,7 +91,6 @@ const styles = StyleSheet.create({
       paddingLeft: 5,
       marginBottom: 20,
       borderColor: '#676767'
-      
     },
 
     multilineStyle:{
@@ -77,5 +109,36 @@ const styles = StyleSheet.create({
       paddingLeft: 5,
       paddingBottom: 2,   
     },
+
+    emptyTextBoxStyle:{
+      borderRadius: 5,
+      borderWidth: 1.5,
+      width: textBoxwidth,
+      height: textBoxHeight,
+      paddingLeft: 5,
+      marginBottom: 20,
+      borderColor: 'red'
+    },
+
+    textClearButtonViewStyle:{
+      position: 'relative',
+    },
+
+    clearButtonStyle:{
+      position: 'absolute',
+      marginLeft: textBoxwidth * 0.92,
+      marginTop: 30,
+      zIndex: 10
+    },
+
+    emptyMultilineTextBoxStyle:{
+      borderRadius: 5,
+      borderWidth: 1.5,
+      width: textBoxwidth,
+      height: 100,
+      paddingLeft: 5,
+      marginBottom: 20,
+      borderColor: 'red'
+    }
 
 })

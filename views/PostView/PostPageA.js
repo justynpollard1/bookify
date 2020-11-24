@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import { 
   StyleSheet, 
   SafeAreaView,
@@ -11,11 +11,13 @@ import {
   Modal
 } from 'react-native';
 
-import FnGTextBoxPrimary from '../../components/TextBoxes/FnGWideTextBox'
-import FnGTextBoxPrimaryT from '../../components/TextBoxes/FnGWideTextBox'
+import BookTitleTextBox from '../../components/TextBoxes/FnGWideTextBox'
+import BookAuthorTextBox from '../../components/TextBoxes/FnGWideTextBox'
+import BookDescriptionTextBox from '../../components/TextBoxes/FnGWideTextBox'
 import FnGShortTextBox from '../../components/TextBoxes/FnGShortTextBox'
 import FnGAddBookImageButton from '../../components/Buttons/FnGAddBookImageButton'
 import FnGButton from '../../components/Buttons/FnGButton'
+import { Input } from 'react-native-elements';
 
 const  PostPageA = (props) =>  {
   const [bookTitle, setBookTitle] = useState('')
@@ -26,20 +28,47 @@ const  PostPageA = (props) =>  {
   const [imageC, setImageC] = useState(null)
   const [keyboardAvoider, setKeyboardAvoider] = useState(false)
 
-  const [isBookTitleEmpty, setBookTitleEmptyStatus] = useState(true)
-  const [isBookAuthorEmpty, setBookAuthorEmptyStatus] = useState(true)
-  const [isBookDescriptionEmpty, setBookDescriptionEmptyStatus] = useState(true)
-  /*const checkBookTitle = () => {
-    if (bookTitle.trim() == 0){
-      alert('Please Enter Book Title')
-      return
-    }
-    setBookTitleEmptyStatus(false)
-    alert('Success')
-  }*/
-  
+  const [errorInBookTitle, setBookTitleErrorStatus] = useState(null)
+  const [errorInBookAuthor, setBookAuthorErrorStatus] = useState(null)
+  const [errorInBookDescription, setBookDescriptionErrorStatus] = useState(null)
 
- 
+  function checkBookTitleText(val){
+    if(val.length < 2 || val.length > 100){
+      setBookTitleErrorStatus(true)
+    }
+    else{
+      setBookTitleErrorStatus(false)
+    }
+
+  }
+
+  function checkBookAuthorText(val){
+    if(val.length < 2 || val.length > 100){
+      setBookAuthorErrorStatus(true)
+    }
+    else{
+      setBookAuthorErrorStatus(false)
+    }
+  }
+
+  function checkBookDescriptionText(val){
+    if(val.length < 10 || val.length > 1000){
+      setBookDescriptionErrorStatus(true)
+    }
+    else{
+      setBookDescriptionErrorStatus(false)
+    }
+  }
+
+  
+  function handleNextPress(){
+    if(errorInBookTitle || errorInBookAuthor || errorInBookDescription){
+      return (Alert.alert("Please fix errors on the form"))
+    }
+    else{
+      return Alert.alert("Next pressed!")
+    }
+  }
 
   return (
     <View>
@@ -51,21 +80,64 @@ const  PostPageA = (props) =>  {
         <SafeAreaView style={styles.container}>
           <FnGAddBookImageButton
             onPress={(val) => setImageA(val.type)}>
-
           </FnGAddBookImageButton>
           
-          <FnGTextBoxPrimaryT
+          <BookTitleTextBox
             label="What is the name of your book?" 
-            placeholder="Title" 
+            placeholder="Title (2-100 chars)" 
             multiline={false}
             onChangeText={(val) => {
-              setBookTitle(val)}}
+              checkBookTitleText(val)
+              setBookTitle(val)
+              }}
+            value={bookTitle}
+            isTextBoxEmpty={errorInBookTitle}
+            onPress={() => {{
+              setBookTitle('')}
+              setBookTitleErrorStatus(true)
+              }}
             onFocus={() => setKeyboardAvoider(false)}
-            
             >
-          </FnGTextBoxPrimaryT>
+          </BookTitleTextBox>
+
+          <BookAuthorTextBox
+            label="Who is the Author of the book?" 
+            placeholder="Author's Name (2-100 chars)" 
+            multiline={false}
+            onChangeText={(val) => {
+              checkBookAuthorText(val)
+              setBookAuthor(val)
+              }}
+            value={bookAuthor}
+            isTextBoxEmpty={errorInBookAuthor}
+            onPress={() => {{
+              setBookAuthor('')}
+              setBookAuthorErrorStatus(true)
+              }}
+            onFocus={() => setKeyboardAvoider(true)}
+            >
+          </BookAuthorTextBox>
+
+
+          <BookDescriptionTextBox
+            label="Description of the book" 
+            placeholder="Description (10-1000 characters)" 
+            multiline={true}
+            onChangeText={(val) => {
+              checkBookDescriptionText(val)
+              setBookDescription(val)
+              }}
+            value={bookDescription}
+            isTextBoxEmpty={errorInBookDescription}
+            onPress={() => {{
+              setBookDescription('')}
+              setBookDescriptionErrorStatus(true)
+              }}
+            onFocus={() => setKeyboardAvoider(true)}
+            >
+          </BookDescriptionTextBox>
           
-            {/*<View>{(errorCheckBookTitle) ? <Text>{bookTitle}</Text> : <Text>Errors</Text>}</View>*/}
+            {/*<View>{(errorCheckBookTitle) ? <Text>{bookTitle}</Text> : <Text>Errors</Text>}</View>
         
           <FnGTextBoxPrimary
             label="Who is the author of the book?" 
@@ -82,27 +154,19 @@ const  PostPageA = (props) =>  {
             onChangeText={(val) => setBookDescription(val)}
             onFocus={() => setKeyboardAvoider(true)}>
           </FnGTextBoxPrimary>
-              
+              */}
           <View style={styles.buttonAlignment}>
-            <FnGButton 
-              text="Clear All" 
-              onPress={ () => {{
-                setBookTitle('') 
-                setBookAuthor('') 
-                setBookDescription('')
-                
-                }}}
-              buttonStyle="secondary">
-            </FnGButton>
+            
 
             <FnGButton 
               text="Next" 
-              onPress={() => Alert.alert("Next")} 
+              onPress={() => {handleNextPress()}} 
               buttonStyle="primary">
             </FnGButton>
+            
           </View>
           
-              <View><Text>{imageA} {bookTitle} {bookAuthor} {bookDescription}</Text></View>
+              <View><Text>{bookTitle} {bookAuthor}</Text></View>
           
         </SafeAreaView>
 
