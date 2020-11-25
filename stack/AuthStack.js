@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import Login from '../components/Login/Login'
-import  Signup  from  '../components/Signup/Signup'
+import Login from '../views/Auth/Login';
+import Signup from '../views/Auth/SignUp';
 import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 

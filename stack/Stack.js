@@ -1,10 +1,10 @@
 
 import React from 'react'
-import Home from '../components/Home'
-import Post from '../components/Post'
-import Message from '../components/Message'
-import Notification from '../components/Notification'
-import Profile from '../components/Profile'
+import Home from '../views/Home/Home'
+import ModalPostBook from '../views/PostView/ModalPostBook'
+import Message from '../views/Message/Message'
+import Notification from '../views/Notification/Notification'
+import Profile from '../views/Profile/Profile'
 import {PRIMARY_COLOR } from '../constants/colors'
 
 import { createStackNavigator } from '@react-navigation/stack';
@@ -62,7 +62,7 @@ const PostStack = createStackNavigator();
 export function PostStackScreen() {
   return (
     <PostStack.Navigator>
-      <PostStack.Screen name="Post" component={Post} 
+      <PostStack.Screen name="Post" component={ModalPostBook} 
        options={{
         title: 'Create a Post',
         headerStyle: {

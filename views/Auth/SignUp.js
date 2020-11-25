@@ -197,24 +197,6 @@ const Signup = (props) => {
       </SignUpButtonContainer>
 
       <TextInputContainer>
-        <NameContainer>
-          <View>
-            <TextTitle>First Name</TextTitle>
-            <StyledNameTextInput
-            value={values.firstName}
-            onChangeText={text => handleChange('firstName', text)}
-            > </StyledNameTextInput>
-          </View>
-
-          <View style={{ marginRight: 32 }}>
-            <TextTitle>Last Name</TextTitle>
-            <StyledNameTextInput 
-            value={values.lastName}
-            onChangeText={text => handleChange('lastName', text)}
-            > </StyledNameTextInput>
-          </View>
-        </NameContainer>
-
         <View style={{ paddingBottom: 10 }}>
           <TextTitle> Username</TextTitle>
           <StyledTextInput value={values.userName}
