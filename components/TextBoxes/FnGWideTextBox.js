@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   TextInput, 
   StyleSheet, 
@@ -10,11 +10,9 @@ import FnGButton from '../Buttons/FnGButton';
 
 
 export default function FnGWideTextBox(props){
-  const [isUserTypedTextEmpty, setIsUserTypedText] = useState(false)
-
 
   const isTextBoxEmpty = props.isTextBoxEmpty
-  console.log( props.value + " is empty? " + isTextBoxEmpty)
+  
   var textBoxStyle = {
     style: isTextBoxEmpty ? styles.emptyTextBoxStyle : styles.singleLineStyle
   }
