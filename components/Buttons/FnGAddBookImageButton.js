@@ -11,13 +11,15 @@ import * as ImagePicker from 'expo-image-picker'
 export default function FnGAddBookImageButton(props){
     
     const [image, setImage] = useState(null);
+    const [imageB, setImageB] = useState(null)
+    const [imageC, setImageC] = useState(null)
 
   useEffect(() => {
     (async () => {
       if (Platform.OS !== 'web') {
         const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
         if (status !== 'granted') {
-          alert('Sorry, we need camera roll permissions to make this work!');
+          alert('Sorry, we need camera roll permissions to add images.');
         }
       }
     })();
@@ -40,9 +42,9 @@ export default function FnGAddBookImageButton(props){
 
     return(
             <TouchableOpacity onPress={pickImage} style={styles.touchableOpacityStyle}>
-                <Image></Image>
+                <Image>{image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}</Image>
                 <Text style={styles.textStyle}>Tap to add images</Text>
-                {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+                
             </TouchableOpacity>
     )
 }
