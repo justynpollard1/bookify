@@ -138,24 +138,6 @@ const  PostPageA = (props) =>  {
             >
           </BookDescriptionTextBox>
           
-            {/*<View>{(errorCheckBookTitle) ? <Text>{bookTitle}</Text> : <Text>Errors</Text>}</View>
-        
-          <FnGTextBoxPrimary
-            label="Who is the author of the book?" 
-            placeholder="Author" 
-            multiline={false}
-            onChangeText={(val) => setBookAuthor(val)}
-            onFocus={() => setKeyboardAvoider(true)}>
-          </FnGTextBoxPrimary>
-
-          <FnGTextBoxPrimary 
-            label="Tell us a bit about your book." 
-            placeholder="Book Description" 
-            multiline={true}
-            onChangeText={(val) => setBookDescription(val)}
-            onFocus={() => setKeyboardAvoider(true)}>
-          </FnGTextBoxPrimary>
-              */}
           <View style={styles.buttonAlignment}>
             
 
