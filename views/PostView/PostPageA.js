@@ -62,8 +62,9 @@ const  PostPageA = (props) =>  {
 
   
   function handleNextPress(){
-    if(errorInBookTitle || errorInBookAuthor || errorInBookDescription){
-      return (Alert.alert("Please fix errors on the form"))
+    if(errorInBookTitle || errorInBookAuthor || errorInBookDescription ||
+        errorInBookTitle === null || errorInBookAuthor === null || errorInBookDescription === null){
+      return (Alert.alert("Please fix errors on the form before continuing."))
     }
     else{
       return Alert.alert("Next pressed!")
